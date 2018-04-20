@@ -98,6 +98,26 @@
 		</if>
 		limit #{start},#{end}
 	</select>
+	<!-- daigai -->
+	<select id="findResumeList" resultType="com.recruit.dao.gen.model.ComResume">
+		SELECT
+		c.resume_id AS resumeId,
+		c.com_id AS comId,
+		c.job_id AS jobId,
+		c.emp_id AS empId,
+		c.resume_name AS resumeName,
+		c.status AS status,
+		c.look AS look,
+		e.realname as realName
+		FROM
+		com_resume AS c
+		INNER JOIN emp AS e ON c.emp_id = e.emp_id 
+		where 1=1
+		<if test="resumeName != null and resumeName != ''">
+			AND ( c.resume_name LIKE #{resumeName}) 
+		</if>
+		limit #{start},#{end}
+	</select>
 	
 	<select id="findJobListcount" resultType="Integer">
 		SELECT
@@ -107,6 +127,17 @@
 		INNER JOIN company AS c ON j.com_id = c.com_id where 1=1
 				<if test="jobName != null and jobName != ''">
 			AND ( j.job_name LIKE  #{jobName} or j.address like #{jobName}  or c.fullname like #{jobName} or j.job_status LIKE #{jobName} or j.description like #{jobName}) 
+		</if>
+	</select>
+	
+	<select id="findResumeListcount" resultType="Integer">
+		SELECT
+		COUNT(cr.resume_id)
+		FROM
+		com_resume AS cr
+		INNER JOIN emp AS e ON e.emp_id = cr.emp_id where 1=1
+				<if test="resumeName != null and resumeName != ''">
+			AND ( cr.resume_name LIKE  #{resumeName} ) 
 		</if>
 	</select>
 	

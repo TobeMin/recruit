@@ -12,10 +12,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.recruit.dao.gen.model.Company;
+import com.recruit.dao.gen.model.Emp;
 import com.recruit.dao.gen.model.Info;
 import com.recruit.dao.gen.model.User;
 import com.recruit.dto.JobDto;
 import com.recruit.service.CommondService;
+import com.recruit.service.CompanyService;
+import com.recruit.service.EmpService;
 import com.recruit.service.InfoService;
 import com.recruit.service.JobService;
 import com.recruit.service.UserService;
@@ -40,6 +44,10 @@ public class UserController {
 	InfoService infoService;
 	@Resource
 	CommondService  cService;
+	@Resource
+	EmpService empService;
+	@Resource
+	CompanyService companyService;
 	/**
 	 * 进入首页
 	 * @return
@@ -59,11 +67,34 @@ public class UserController {
 		return view;
 	}
 	
-	@RequestMapping(value = "/goUserInfo")
-	public ModelAndView  goUserInfo() {
+	@RequestMapping(value = "/goUserInfo") //暂时弃用
+	public ModelAndView  goUserInfo(HttpServletRequest req) {
 		
 		ModelAndView view = new ModelAndView();
-		view.setViewName("user/userInfo");
+		/*
+		 * 做个判断，假如数据库找不到用户的个人信息，则跳转到信息填写页面
+		 * 否则跳到信息展示页面
+		 * */
+		User user=(User) req.getSession().getAttribute("user");
+		
+			if(user.getStatus()==1){
+				Emp emp=empService.findByUserId(user.getId());
+				if(emp==null||emp.equals(null)) {
+					view.setViewName("user/empInfoRegister");
+				}else {
+					view.setViewName("user/empInfo");
+				}
+			}else{
+				Company company=companyService.findByUid(user.getId());
+				if(company==null||company.equals(null)) {
+					view.setViewName("user/comInfoRegister");
+				}else {
+					view.setViewName("user/comInfo");
+				}
+				
+			}
+
+//		view.setViewName("user/userInfo"); 修改密码的页面
 //		view.setViewName("user/MyJsp");
 		return view;
 	}
@@ -101,18 +132,19 @@ public class UserController {
 		ModelAndView view = new ModelAndView();
 	boolean flag=userService.saveUser(user);
 	request.getSession().setAttribute("user", user);
-		if(flag==true){
-			//允许注册
-			if(user.getStatus()==1){
-				view.setViewName("user/empInfoRegister");
-			}else{
-				view.setViewName("user/comInfoRegister");
-			}
-
-		}else{
-			//不允许注册
-			view.setViewName("user/comRegister");
-		}
+//		if(flag==true){
+//			//允许注册
+//			if(user.getStatus()==1){
+//				view.setViewName("user/empInfoRegister");
+//			}else{
+//				view.setViewName("user/comInfoRegister");
+//			}
+//
+//		}else{
+//			//不允许注册
+//			view.setViewName("user/comRegister");
+//		}
+		view.setViewName("user/registerSuccess");
 
 
 		return view;
@@ -144,7 +176,9 @@ public class UserController {
 	@RequestMapping(value = "/goJobList2")
 	public ModelAndView  goJobList2(String  param) {
 		ModelAndView view = new ModelAndView();
-
+		
+		System.out.println("======goJobList2======="+param+"======goJobList2=======");
+		
 		view.addObject("param", param);
 		view.setViewName("job/jobList");
 //		view.setViewName("user/MyJsp");

@@ -6,7 +6,7 @@
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
 
 	<head>
-		<title>招聘之家</title>
+		<title>校园招聘</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<!--meta info-->
@@ -103,7 +103,7 @@ $.ajax({
 
 	          				$("#detail_image").attr("src", v); 	          			
 	          			}else{
-	          			$("#detail_"+i).val(v);
+	          				$("#detail_"+i).val(v);
 	          			}
 	          		});
 	          		}
@@ -120,9 +120,9 @@ $.ajax({
 			swal("姓名不可以为空!");
 			return;
 		}
-				var name=$("#detail_resumeName").val();
+		var name=$("#detail_resumeName").val();
 		if((name==null||name=="")){
-			swal("简历不可以为空!");
+			swal("应聘岗位不可以为空!");
 			return;
 		}
 			var src=$('#detail_image').attr('src');
@@ -148,17 +148,18 @@ $.ajax({
 	          data:$("#dpform").serialize(),
 	          success:function(data, textStatus, jqXHR){
 	          		if(data != 0){
-	          		var src=$('#detail_image').attr('src'); 
+	          			var src=$('#detail_image').attr('src'); 
 	          			var file=document.getElementById('imageFile');	 
 	          		  
 	          				saveDeterpersonImage(file,data);
+	          				swal("保存成功！");
 	          		}else{
 	          			
-	          			openMsgDialog("异常......");
+	          			swal("异常......");
 	          		}
 	          },
 	          error:function(){
-	        	  openMsgDialog("异常信息123!");
+	        	  swal("服务开了点小猜...");
 	          }
 	   });	
 		
@@ -233,6 +234,7 @@ $.ajax({
         	
         }
         
+        //上传图片
     	function saveDeterpersonImage(file,id){
     		if(!window.FormData) {
     	        swal('浏览器版本不符');
@@ -258,7 +260,7 @@ $.ajax({
     	          		}
     	          },
     	          error:function(){
-    	           	 	swal("异常信息!");
+    	           	 	swal("图片异常!");
     	          }
     	   });	
     	}
@@ -272,7 +274,7 @@ $.ajax({
 				<div class="container" style="width:1170px;"><div class="row wrapper"><div class="clearfix" style="padding:9px 0 0;float:left;width:83%;"><i class="fa fa-exclamation-triangle scheme_color f_left m_right_10" style="font-size:25px;color:#e74c3c;"></i><b style="color:#e74c3c;">Attention! This page may not display correctly.</b> <b>You are using an outdated version of Internet Explorer. For a faster, safer browsing experience.</b></div><div class="t_align_r" style="float:left;width:16%;"><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode" class="button_type_4 r_corners bg_scheme_color color_light d_inline_b t_align_c" target="_blank" style="margin-bottom:2px;">Update Now!</a></div></div></div></div>
 			<![endif]-->
 			<!--markup header-->
-	<!--boxed layout-->
+		<!--boxed layout-->
 		<div class="boxed_layout relative w_xs_auto">
 			<!--[if (lt IE 9) | IE 9]>
 				<div style="background:#fff;padding:8px 0 10px;">
@@ -314,7 +316,7 @@ $.ajax({
             </tr>
             <tr>
                 <td><font class="c1">国籍：</font></td>
-                <td><font class="c2"><select name="country" style="width:95%;height:35px;border: none; " id="detail_country"><option selected="selected"></option><option value="中国">中国</option><option value="伊朗">伊朗</option><option value="沙特">沙特</option><option value="阿联酋">阿联酋</option></select></font></td>
+                <td><font class="c2"><input type="text" name="country" style="width:95%;height:35px;border: none; " id="detail_country"></font></td>
                  <td><font class="c1">是否在职：</font></td>
                 <td><font class="c2"><select name="jobstatus" style="width:95%;height:35px;border: none; " id="detail_jobstatus"><option selected="selected"></option><option value="否">否</option><option value="是">是</option></font></td>
             </tr>
@@ -336,7 +338,7 @@ $.ajax({
                 <td><font class="c2"><input type="text" style="width:95%;height:35px;border: none; " name="language" id="detail_language"></font></td>
             </tr>
             <tr>
-                <td><font class="c1"><a style="color:red ">*</a> 简历名称：</font></td>
+                <td><font class="c1"><a style="color:red ">*</a> 应聘岗位：</font></td>
                 <td><font class="c2"><input type="text" style="width:95%;height:35px;border: none; " name="resumeName" id="detail_resumeName"></font></td>
                  <td><font class="c1">QQ号码：</font></td>
                 <td id="check3"><font class="c2"><input type="text" style="width:95%;height:35px;border: none; " name="qq" id="detail_qq"  onblur="checkData(this.value)"></font></td>
@@ -380,7 +382,9 @@ $.ajax({
             </tr>
             <tr>
                 <td><font class="c1">工作经历：</font></td>
-                <td ><font class="c2"><input type="text" style="padding-left:2%; width:95%;height:38px;border: none; " name="work" id="detail_work"></font></td>
+                <td ><font class="c2"><textarea style="padding-left:2%; width:95%;height:50px;border: none; " rows="300" cols="50" name="work" id="detail_work"></textarea></font></td>
+                <!--  <td ><font class="c2"><input type="text" style="padding-left:2%; width:95%;height:38px;border: none; " name="work" id="detail_work"></font></td>
+            	-->
             </tr>
             <tr>
                 <td><font class="c1">家庭成员：</font></td>
@@ -388,7 +392,9 @@ $.ajax({
             </tr>
             <tr>
                 <td><font class="c1">项目经验：</font></td>
-                <td><font class="c2"><input type="text" style="padding-left:2%; width:95%;height:38px;border: none; "  name="experience" id="detail_experience"></font></td>
+                <td><font class="c2"><textarea style="padding-left:2%; width:95%;height:100px;border: none; " rows="300" cols="50" name="experience" id="detail_experience"></textarea></font></td>
+                <!-- <td><font class="c2"><input type="text" style="padding-left:2%; width:95%;height:38px;border: none; "  name="experience" id="detail_experience"></font></td>
+            	 -->
             </tr>
         </table>
 	</form>

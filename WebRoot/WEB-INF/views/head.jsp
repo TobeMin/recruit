@@ -5,7 +5,7 @@
 <!--[if IE 9 ]><html class="ie9" lang="en"><![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
 	<head>
-		<title>招聘之家</title>
+		<title>校园招聘</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<!--meta info-->
@@ -21,11 +21,31 @@
 		<link rel="stylesheet" type="text/css" media="all" href="<%=request.getContextPath()%>/css/jquery.custom-scrollbar.css">
 		<link rel="stylesheet" type="text/css" media="all" href="<%=request.getContextPath()%>/css/style.css">
 		<script src="<%=request.getContextPath()%>/common/sweet/sweet-alert.min.js"></script>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/common/sweet/sweet-alert.css">
+		<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/common/sweet/sweet-alert.css">
 		<!--font include-->
 		<link href="<%=request.getContextPath()%>/css/font-awesome.min.css" rel="stylesheet">
 		<script type="text/javascript">
-		 function login(){
+		
+		if(${user!=null}){
+			if(${user.status==2}){
+				$.ajax({
+					url:"<%=request.getContextPath()%>/job/findCompanyNews",
+					type:"post",
+					dataType:"json",
+					
+					success:function(result){
+						$(".notice_count").html(result);
+					},
+					error:function(){
+						
+					}
+				})
+			}
+			//alert(${user.status});
+		}
+		
+			
+		function login(){
 		var username = $('#username').val();
 		var password = $('#pwd').val();
 		if (username == null || username == "") {
@@ -63,7 +83,7 @@
 	 window.location.href = "<%=request.getContextPath()%>/user/goCompany";
 	 }
 	}
-			function showNo(){
+		function showNo(){
 		swal("该功能暂时还未开通!敬请期待!");
 		}
 		function doSearch(){
@@ -71,6 +91,18 @@
 		window.location.href = "<%=request.getContextPath()%>/user/goJobList2?param="+search;	
 		}
 		</script>
+		<style type="text/css">
+			.notice_count{
+				    width: 18px;
+    				height: 18px;
+    				background-color: red;
+    				border-radius: 70%;
+    				color: white;
+    				display: inline-block;
+    				text-align: center;
+			}
+			
+		</style>
 		
 	</head>
 	<body>
@@ -88,21 +120,26 @@
 
 		<c:if test="${user!=null}">
 		 <p class="f_size_small"><b>您好${user.username }
-						，欢迎光临招聘之家</b> ||&nbsp;<a href="<%=request.getContextPath()%>/logout" >登出</a></p>
+						，欢迎光临校园招聘</b> ||&nbsp;<a href="<%=request.getContextPath()%>/logout" >登出</a></p>
 		
 		</c:if>
 							</div>
 							<div class="col-lg-4 col-md-4 col-sm-2 t_align_c t_xs_align_c">
 								<p class="f_size_small">免费电话 <b class="color_dark">(123) 456-7890</b></p>
 							</div>
-								<c:if test="${user!=null}">
+							<c:if test="${user!=null}">
 							<nav class="col-lg-4 col-md-4 col-sm-5 t_align_r t_xs_align_c">
 								<ul class="d_inline_b horizontal_list clearfix f_size_small users_nav">
-									<li><a href="<%=request.getContextPath()%>/user/goUserInfo" class="default_t_color">我的信息</a></li>
+									<c:if test="${user.status==1}">
+									<li><a href="<%=request.getContextPath()%>/user/goUserInfo" class="default_t_color">我的信息</a><span class="notice_count">0</span></li>
+									</c:if>
+									<c:if test="${user.status==2}">
+									<li><a href="<%=request.getContextPath()%>/job/goResumeList" class="default_t_color">我的信息</a><span class="notice_count">0</span></li>
+									</c:if>
 									<!-- <li><a href="#" class="default_t_color">浏览历史</a></li> -->
 								</ul>
 							</nav>
-									</c:if>
+							</c:if>
 						</div>
 					</div>
 				</section>
@@ -111,7 +148,7 @@
 					<div class="clearfix row">
 						<div class="col-lg-6 col-md-6 col-sm-4 t_xs_align_c">
 							<a href="<%=request.getContextPath()%>/goMain" class="logo m_xs_bottom_15 d_xs_inline_b">
-								<img src="<%=request.getContextPath()%>/images/logo.png" alt="">
+								<img src="<%=request.getContextPath()%>/images/logo.jpg" alt="" >
 							</a>
 						</div>
 						<div class="col-lg-6 col-md-6 col-sm-8 t_align_r t_xs_align_c">
@@ -165,7 +202,8 @@
 										</ul>
 									</div>
 								</li>
-								<li class="relative f_xs_none m_xs_bottom_5"><a href="#" class="tr_delay_hover color_light tt_uppercase"><b>求职者点我</b></a>
+								<c:if test="${user!=null&&user.status==1}">
+								<li id="studentList" class="relative f_xs_none m_xs_bottom_5"><a href="#" class="tr_delay_hover color_light tt_uppercase"><b>学生</b></a>
 									<!--sub menu-->
 									<div class="sub_menu_wrap top_arrow d_xs_none type_2 tr_all_hover clearfix r_corners">
 										<ul class="sub_menu">
@@ -177,7 +215,9 @@
 										</ul>
 									</div>
 								</li>
-								<li class="relative f_xs_none m_xs_bottom_5"><a href="#" class="tr_delay_hover color_light tt_uppercase"><b>企业用户点我</b></a>
+								</c:if>
+								<c:if test="${user!=null&&user.status==2}">
+								<li id="companyList" class="relative f_xs_none m_xs_bottom_5"><a href="#" class="tr_delay_hover color_light tt_uppercase"><b>企业</b></a>
 									<!--sub menu-->
 									<div class="sub_menu_wrap top_arrow d_xs_none type_2 tr_all_hover clearfix r_corners">
 										<ul class="sub_menu">
@@ -189,6 +229,7 @@
 										</ul>
 									</div>
 								</li>
+								</c:if>
 								<li class="relative f_xs_none m_xs_bottom_5"><a href="#" class="tr_delay_hover color_light tt_uppercase"><b>博客</b></a>
 									<!--sub menu-->
 									<div class="sub_menu_wrap top_arrow d_xs_none type_2 tr_all_hover clearfix r_corners">

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,7 +24,7 @@ import com.recruit.util.BaseResponse;
 public class CompanyController {
 	
 	@Resource
-CompanyService companyService;
+	CompanyService companyService;
 
 	@ResponseBody
 	@RequestMapping(value = "/checkCompanyname")
@@ -72,7 +73,7 @@ CompanyService companyService;
 	 * @return
 	 * @throws UnsupportedEncodingException 
 	 */
-	@RequestMapping(value = "/saveCompany")
+	@RequestMapping(value = "/saveCompany",method=RequestMethod.POST)
 	public ModelAndView  saveUser(Company  company,HttpServletRequest request) throws UnsupportedEncodingException {
 	User user=	(User) request.getSession().getAttribute("user");
 		company.setUserId(user.getId());
@@ -101,7 +102,16 @@ CompanyService companyService;
 	@RequestMapping(value = "/goCompanyInfo")
 	public ModelAndView  goCompanyInfo(HttpServletRequest request) {
 		ModelAndView view = new ModelAndView();
-    	view.setViewName("user/comInfo");
+		
+		User user=(User) request.getSession().getAttribute("user");
+
+		Company company=companyService.findByUid(user.getId());
+		if(company==null||company.equals(null)) {
+			view.setViewName("user/comInfoRegister");
+		}else {
+			view.setViewName("user/comInfo");
+		}
+		
 		return view;
 	}
 	@ResponseBody
@@ -119,6 +129,8 @@ CompanyService companyService;
 
 		
 	}
+	
+
 
 	
 }

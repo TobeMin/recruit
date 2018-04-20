@@ -11,9 +11,9 @@
 	content="0;URL=<%=root%>/goMain"
 	content="text/html; charset=utf-8">
 
-<title>招聘</title>
+<title>校园招聘</title>
 </head>
 <body>
-欢迎来到招聘之家!!!
+欢迎来到广西科技大学招聘网站!!!
 </body>
 </html>

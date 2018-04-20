@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
-
+import com.recruit.dao.gen.model.ComResume;
 import com.recruit.dto.JobDto;
 
 public interface JobDao {
@@ -19,8 +19,12 @@ public interface JobDao {
 	
 	
 	public int  findJobListcount(@Param("jobName") String jobName);
+	//daigai
+	public Integer  findResumeListcount(@Param("resumeName") String resumeName);
 	
 	public List<JobDto> findJobList(@Param("jobName") String jobName,@Param("start") int start,@Param("end") int end);
+	//daigai
+	public List<ComResume> findResumeList(@Param("resumeName") String resumeName,@Param("start") int start,@Param("end") int end);
 	
 	public int updateTopJob(@Param("jobId") int jobId);
 	

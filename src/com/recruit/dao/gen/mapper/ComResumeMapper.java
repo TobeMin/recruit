@@ -27,4 +27,6 @@ public interface ComResumeMapper {
     int updateByPrimaryKeySelective(ComResume record);
 
     int updateByPrimaryKey(ComResume record);
+    
+    List<ComResume> selectByCompanyId(Integer comId);
 }

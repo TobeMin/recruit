@@ -6,7 +6,7 @@
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
 
 	<head>
-		<title>招聘之家</title>
+		<title>校园招聘</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<!--meta info-->
@@ -48,7 +48,7 @@
 			<section class="breadcrumbs">
 				<div class="container">
 					<ul class="horizontal_list clearfix bc_list f_size_medium">
-						<li class="m_right_10 current"><a href="#" class="default_t_color">招聘之家<i class="fa fa-angle-right d_inline_middle m_left_10"></i></a></li>
+						<li class="m_right_10 current"><a href="#" class="default_t_color">校园招聘<i class="fa fa-angle-right d_inline_middle m_left_10"></i></a></li>
 						<li><a href="#" class="default_t_color">博客</a></li>
 					</ul>
 				</div>

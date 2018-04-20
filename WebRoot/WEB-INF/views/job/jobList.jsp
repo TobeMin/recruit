@@ -6,7 +6,7 @@
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
 
 	<head>
-		<title>招聘之家</title>
+		<title>校园招聘</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<!--meta info-->
@@ -28,41 +28,43 @@ $(function() {
   if(param==""||(typeof(param) == undefined) ) {
 
   }else{
-  joburl+="?jobName="+param;
+  	joburl+="?jobName="+param;
+  	alert(joburl);
+  	console(joburl);
   }
     $obj = $("#tt");  
     $obj.datagrid({  
         loadMsg : '数据加载中请稍后……',  
         url : joburl,  
         //url : root + 'js/app/sysManagement/sysConfig.json',  
-        fitColumns : true,  
-        autoRowHeight : true,  
-        pagination : true,  
-        pagePosition : 'bottom',  
-        pageSize : 10,  
-        toolbar: '#tb',  
-        pageList : [ 10, 20, 30 ],  
-        border : false,  
-        singleSelect:true,  
-        idField:'jobId',
-        				iconCls: 'icon-edit',
-				pagination:true,
-			collapsible:true,
-			rownumbers:true,
-			remoteSort : false,
-                striped: true, //行背景交换
-                nowap: true, //列内容多时自动折至第二行
-                border: false,  
+        fitColumns : true,  //设置为true将自动使列适应表格宽度以防止出现水平滚动。
+        autoRowHeight : true,  //定义设置行的高度，根据该行的内容。设置为false可以提高负载性能。
+        pagination : true,  //设置true将在数据表格底部显示分页工具栏。
+        pagePosition : 'bottom',  //定义的分页栏的位置。可用的值有 'top','bottom','both'。
+        pageSize : 10,  //当设置分页属性时，初始化每页记录数。
+        toolbar: '#tb',  //数据表格顶部面板的工具栏。可能的值：1）数组，每个工具选项和链接按钮相同。2）选择显示的工具栏。
+        pageList : [ 10, 20, 30 ],  //当设置分页属性时，初始化每页记录数列表。
+        //border : false,  
+        singleSelect:true,  //设置为true将只允许选择一行。
+        idField:'jobId',	//表明该列是一个唯一列。
+        iconCls: 'icon-edit',	//?
+		//pagination:true,
+		collapsible:true,	//?
+		rownumbers:true,	//	设置为true将显示行数。
+		remoteSort : false,	//定义是否通过远程服务器对数据排序。
+        striped: true, //行背景交换
+        nowrap: true, //设置为true，当数据长度超出列宽时将会自动截取。
+        border: false,  
         columns : [ [ {  
                 field : 'jobId',  
                 title : 'jobId',  
                 hidden : true  
             },{  
-                field : 'jobName',  
-                title : "职位名称",  
+                field : 'jobName',  //列标题
+                title : "职位名称",   //列字段
                 width : 200,  
-                editor : 'text',  
-                sortable : true  
+                editor : 'text',   //表明编辑类型
+                sortable : true    //设置为true允许对该列排序。
             }, {  
                 field : 'jobPersoncount',  
                 title : "招聘人数",  
@@ -129,7 +131,7 @@ $(function() {
              return s;        
                 }  
         } ] ],  
-        onLoadSuccess : function(data) {  
+        onLoadSuccess : function(data) {  //当数据载入成功时触发
   
         },  
         onBeforeEdit:function(index,row){  
@@ -160,7 +162,7 @@ $(function() {
         var index = $obj.datagrid('getRowIndex', selected);  
         return index;  
     }  
-          function findrow(index,obj){  
+    function findrow(index,obj){  
              selectCurRow(obj);  
     } 
     function editrow(index,obj){  
@@ -291,7 +293,7 @@ $(function() {
 				<div class="container">
 <!-- 			   <table id="jobManagerGrid"></table> -->
 
-	<table id="tt" ></table>
+					<table id="tt" ></table>
 					<input type="hidden" value="${param.param}" id="param" >	
 				</div>
 			</div>

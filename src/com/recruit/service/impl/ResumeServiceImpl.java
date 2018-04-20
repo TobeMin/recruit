@@ -1,5 +1,7 @@
 package com.recruit.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -11,6 +13,7 @@ import com.recruit.service.ResumeService;
 public class ResumeServiceImpl implements ResumeService{
 	@Resource
 	ComResumeMapper resumeMapper;
+	
 	@Override
 	public boolean saveResume(ComResume user) {
 		int i=resumeMapper.insert(user);
@@ -19,6 +22,23 @@ public class ResumeServiceImpl implements ResumeService{
 		}
 
 		return false;
+	}
+	
+	@Override
+	public List<ComResume> findCompanyNews(Integer comId) {
+		// TODO Auto-generated method stub
+		
+		return resumeMapper.selectByCompanyId(comId);
+	}
+
+	@Override
+	public boolean updateResumeLook(ComResume comResume) {
+		// TODO Auto-generated method stub
+		if(resumeMapper.updateByPrimaryKeySelective(comResume)>0) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 }

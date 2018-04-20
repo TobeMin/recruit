@@ -67,9 +67,11 @@ public class LoginController {
 			return BaseResponse.STATUS_500;
 		}
 
-		if(currentUser.isAuthenticated()){
+		if(currentUser.isAuthenticated()){   //是否通过身份验证
 			user = userService.findByUsername(username);
 			currentUser.getSession().setAttribute("user", user);
+			
+			//System.out.println("============="+user.getId()+user.getStatus()+"=============");
 			
 			baseResponse.setStatus(200);
 	

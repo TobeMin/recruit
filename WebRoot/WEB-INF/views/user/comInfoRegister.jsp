@@ -5,7 +5,7 @@
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
 
 	<head>
-		<title>招聘之家</title>
+		<title>校园招聘</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<!--meta info-->
@@ -76,9 +76,11 @@
 	          data:$("#comform").serialize(),
 	          success:function(data, textStatus, jqXHR){
 	          		if(data != 0){
-	          			alert("保存成功");
+	          			swal("保存成功");
+	          			window.location.href="<%=path%>/com/goCompanyInfo";
 	          		}else{
-	          			openMsgDialog("异常......");
+	          			//openMsgDialog("异常......");
+	          			swal("异常。。。");
 	          		}
 	          },
 	          error:function(){

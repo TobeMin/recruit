@@ -91,6 +91,16 @@
     from com_resume
     where resume_id = #{resumeId,jdbcType=INTEGER}
   </select>
+  
+  <!-- ??? -->
+  <select id="selectByCompanyId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	 select 
+    <include refid="Base_Column_List" />
+    from com_resume
+    where com_id = #{comId,jdbcType=INTEGER}
+  </select>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from com_resume
     where resume_id = #{resumeId,jdbcType=INTEGER}

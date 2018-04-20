@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.recruit.dao.gen.mapper.JobMapper;
 import com.recruit.dao.gen.mapper.TopJobMapper;
+import com.recruit.dao.gen.model.ComResume;
 import com.recruit.dao.gen.model.Job;
 import com.recruit.dao.gen.model.TopJob;
 import com.recruit.dao.impl.JobDao;
@@ -94,10 +95,25 @@ public class JobServiceImpl implements JobService {
 		JqueryDto dto=new JqueryDto();
 		dto.setTotal(total);
 		pager.setObj(list);
-//		String json = net.sf.json.JSONArray.fromObject(pager.getObj()).toString();
 		dto.setRows(list);
 			//查询分页条数
 			return dto;
+	}
+	
+	//待改
+	@Override
+	public JqueryDto findResumeList(Pager pager, ComResume comResume) {
+		//查询总数
+		int total=jobDao.findResumeListcount(comResume.getResumeName());
+		int start =Integer.parseInt(pager.getPage())-1;
+		//查询结果集
+		List<ComResume> list=jobDao.findResumeList(comResume.getResumeName(), start, Integer.parseInt(pager.getRows()));
+		JqueryDto dto=new JqueryDto();
+		dto.setTotal(total);
+		pager.setObj(list); 
+		dto.setRows(list);
+			//查询分页条数
+		return dto;
 	}
 
 	@Override

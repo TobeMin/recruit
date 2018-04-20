@@ -1,6 +1,7 @@
 package com.recruit.control;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -41,10 +42,10 @@ public class JobController {
 	CompanyService companyService;
 	
 	@Resource
-EmpService empService;
-	
+	EmpService empService;
+		
 	@Resource
-ResumeService resumeService;
+	ResumeService resumeService;
 
 	@RequestMapping(value = "/goSaveJob")
 	public ModelAndView goSaveJob(HttpServletRequest request) {
@@ -249,18 +250,59 @@ ResumeService resumeService;
 	@ResponseBody
 	@RequestMapping(value="findJobList")
 	public JqueryDto findJobList(HttpServletRequest request,HttpServletResponse response,String jobName){
-	//查询总数
-//		User user = (User) request.getSession().getAttribute("user");
-//		if (user == null||user.getStatus()==1) {
-//            return null;
-//		}
-//	Company  c=companyService.findByUid(user.getId());
+
 	Job job=new Job();
 	job.setJobName(jobName);
-	//查询分数LIST	
-	Pager	pager = PagerUtils.getPager(request);
+	//查询分页LIST	
+	Pager pager = PagerUtils.getPager(request);
 		return jobService.findJobList(pager, job);
 	}
+	
+	@RequestMapping(value = "/goResumeList")
+	public ModelAndView  goResumeList() {
+		ModelAndView view = new ModelAndView();
+		view.setViewName("job/resumeList");
+		return view;
+	}
+	
+	//简历列表
+	@ResponseBody
+	@RequestMapping(value="findResumeList")
+	public JqueryDto findResumeList(HttpServletRequest request,HttpServletResponse response,String resumeName) {
+		ComResume comResume= new ComResume();
+		comResume.setResumeName(resumeName);
+		
+		Pager pager = PagerUtils.getPager(request);
+		
+		return jobService.findResumeList(pager, comResume);
+	}
+	
+	@RequestMapping(value = "/goResume")
+	public ModelAndView  goResume(HttpServletRequest request,HttpSession session) {
+		ModelAndView view = new ModelAndView();
+		session.setAttribute("empId", request.getParameter("empId"));
+		session.setAttribute("resumeId", request.getParameter("resumeId"));
+		view.setViewName("job/resume");
+		return view;
+	}
+	//查看简历
+	@ResponseBody
+	@RequestMapping(value="/goResumeInfo")
+	public Emp goResumeInfo(HttpSession session){
+		
+		Integer empId = Integer.parseInt((String) session.getAttribute("empId"));
+		Integer resumeId = Integer.parseInt((String) session.getAttribute("resumeId"));
+		System.out.println("=====/goResumeInfo"+empId);
+		//System.out.println("========goResumeInfo======"+empService.findByEmpId(empId));
+		//修改look为1，表示已查阅
+		ComResume cResume = new ComResume();
+		cResume.setResumeId(resumeId);
+		cResume.setLook(1);
+		System.out.println("=====查阅状态========="+resumeService.updateResumeLook(cResume));
+		return empService.findByEmpId(empId);
+		
+	}
+	
 	
 	   @RequestMapping(value ="applyJob", method = RequestMethod.POST)  
 	   public void applyJob(JobDto dto,HttpServletResponse response,HttpServletRequest request) {  
@@ -291,7 +333,7 @@ ResumeService resumeService;
 	    	 cr.setLook(0);
 	    	 cr.setResumeName(emp.getResumeName());
 	    	 cr.setStatus("0");
-//	   查询用户对应的简历名称是否存在
+	    	 //	   查询用户对应的简历名称是否存在
 	    	boolean f= resumeService.saveResume(cr);
 	    	  //插入对应职位表
 	          if(f){
@@ -316,5 +358,34 @@ ResumeService resumeService;
 	         
 
 	   }  
+	   
+	   	
+		@RequestMapping(value="/findCompanyNews",method=RequestMethod.POST)
+		@ResponseBody
+		public String findCompanyNews(HttpSession session) {
+			
+			Integer newsCount=0;
+			User user = (User) session.getAttribute("user");
+			
+			System.out.println("=====findCompanyNews===="+user.getId()+"=====findCompanyNews====");
+			
+			Company com=companyService.findByUid(user.getId());
+			
+			List<ComResume> resumeList= resumeService.findCompanyNews(com.getComId());
+			
+			if(resumeList==null||resumeList.equals(null)) {
+				return "0";
+			}else {
+				for(ComResume c:resumeList) {
+					if(c.getLook()==0) {
+						newsCount++;
+					}
+				}
+				return newsCount.toString();
+			}
+			
+			//System.out.println("======================findCompanyNews==============="+comResume.getEmpId()+"======================findCompanyNews===============");
+			
+		}
   
 }

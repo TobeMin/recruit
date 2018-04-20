@@ -2,6 +2,7 @@ package com.recruit.service;
 
 import java.util.List;
 
+import com.recruit.dao.gen.model.ComResume;
 import com.recruit.dao.gen.model.Job;
 import com.recruit.dto.JobDto;
 import com.recruit.util.JqueryDto;
@@ -27,6 +28,8 @@ public interface JobService {
 	public boolean del(int id);
 	
 	public JqueryDto findJobList(Pager pager,Job job);
+	
+	public JqueryDto findResumeList(Pager pager, ComResume comResume);
 	
 	public JqueryDto findHistoryJobList(Pager pager,Job job,int userId);
 

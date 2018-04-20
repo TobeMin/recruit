@@ -9,7 +9,7 @@
 <!--[if IE 9 ]><html class="ie9" lang="en"><![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
 	<head>
-		<title>招聘之家</title>
+		<title>校园招聘</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<!--meta info-->
@@ -113,7 +113,7 @@
 						<div class="f_size_large color_light tt_uppercase slider_title_3 m_bottom_5">您的菜来啦</div>
 						<hr class="slider_divider d_inline_b m_bottom_5">
 						<div class="color_light slider_title tt_uppercase t_align_c m_bottom_45 m_sm_bottom_20"><b>抓住 &amp; Hold住<br>我在碗里等你呦</b></div>
-						<div class="color_light slider_title_2 m_bottom_45"><b>2017-05-22</b></div>
+						<div class="color_light slider_title_2 m_bottom_45"><b>2018-05-20</b></div>
 						<a href="#" role="button" class="tr_all_hover button_type_4 bg_scheme_color color_light r_corners tt_uppercase">查看详情</a>
 					</div> -->
 				</div>
@@ -128,7 +128,7 @@
     			<div data-src="<%=path%>/images/slide_011.jpg" data-custom-thumb="<%=path%>/images/slide_011.jpg">
     				<div class="camera_caption_3 fadeFromTop t_align_c d_xs_none">
 <!-- 						<img src="<%=path%>/images/slider_layer_img.png" alt="" class="m_bottom_5"> -->
-						<div class="color_light slider_title tt_uppercase t_align_c m_bottom_60 m_sm_bottom_20"><b class="color_white">机遇总会留给准备好的人,招聘之家助你追梦成功</b></div>
+						<div class="color_light slider_title tt_uppercase t_align_c m_bottom_60 m_sm_bottom_20"><b class="color_white">机遇总会留给准备好的人,校园招聘助你追梦成功</b></div>
 						<a href="#" role="button" class="d_sm_inline_b button_type_4 bg_scheme_color color_light r_corners tt_uppercase tr_all_hover">一起追梦</a>
 					</div>
     			</div>

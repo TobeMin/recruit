@@ -2985,7 +2985,7 @@ aside .addthis_widget_container{
 	padding-right:40px;
 }
 input:not([type="submit"]),textarea{
-	background:#f5f7f8;
+	/* background:#f5f7f8; */
 	height:40px;
 	padding:9px 10px;
 	color:#696e6e;

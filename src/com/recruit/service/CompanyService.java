@@ -15,4 +15,6 @@ public interface CompanyService {
 	public boolean saveCompany(Company user);
 	
 	public boolean updateCompany(Company user);
+	
+	
 }

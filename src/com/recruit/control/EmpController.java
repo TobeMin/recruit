@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -36,7 +37,7 @@ public class EmpController {
 	PhotoService photoService;
 	
 	@Resource
-ResumeService resumeService;
+	ResumeService resumeService;
 	
 
 	@Resource
@@ -47,7 +48,7 @@ ResumeService resumeService;
 	 * 
 	 * @return
 	 */
-	@RequestMapping(value = "/saveEmp")
+	@RequestMapping(value = "/saveEmp",method=RequestMethod.POST)
 	public  void saveEmp(Emp emp, HttpServletRequest request,HttpServletResponse response) {
 		User user = (User) request.getSession().getAttribute("user");
 		emp.setUserId(user.getId());
@@ -72,7 +73,7 @@ ResumeService resumeService;
 	
 	}
 	
-	@RequestMapping(value = "/updateEmp")
+	@RequestMapping(value = "/updateEmp",method=RequestMethod.POST)
 	public  void updateEmp(Emp emp, HttpServletRequest request,HttpServletResponse response) {
 		User user = (User) request.getSession().getAttribute("user");
 		emp.setUserId(user.getId());
@@ -89,10 +90,10 @@ ResumeService resumeService;
 				response.setContentType("text/html;charset=utf-8");
 				response.getWriter().print(0);
 			}
-			} catch (IOException e) {
+		} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+		}
 
 	
 	}
@@ -134,11 +135,20 @@ ResumeService resumeService;
 
 	    }  
 		@RequestMapping(value = "/goEmpInfo")
-		public ModelAndView  goEmpInfo() {
+		public ModelAndView  goEmpInfo(HttpServletRequest req) {
 			ModelAndView view = new ModelAndView();
-
-				// 允许注册
+			
+			User user=(User) req.getSession().getAttribute("user");
+			
+			Emp emp=empService.findByUserId(user.getId());
+			if(emp==null||emp.equals(null)) {
+				view.setViewName("user/empInfoRegister");
+			}else {
+				
+				// 展示个人信息
 				view.setViewName("user/empInfo");
+			}
+
 
 
 			return view;
@@ -148,6 +158,7 @@ ResumeService resumeService;
 		public BaseResponse findEmpById(HttpServletRequest request){
 			//Company company=companyService.findByCompanyname(fullname);
 			User user=	(User) request.getSession().getAttribute("user");
+			
 			BaseResponse b=new BaseResponse();
 			
 			if(user==null){

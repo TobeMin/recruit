@@ -5,7 +5,7 @@
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
 
 	<head>
-		<title>招聘之家</title>
+		<title>校园招聘</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<!--meta info-->

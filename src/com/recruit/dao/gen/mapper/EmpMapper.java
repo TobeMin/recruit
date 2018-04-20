@@ -19,6 +19,9 @@ public interface EmpMapper {
     List<Emp> selectByExample(EmpCriteria example);
 
     Emp selectByPrimaryKey(Integer empId);
+    
+    //？
+    Emp selectByUserId(Integer userId);
 
     int updateByExampleSelective(@Param("record") Emp record, @Param("example") EmpCriteria example);
 

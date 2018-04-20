@@ -4,7 +4,7 @@
 
 <!doctype html>
 	<head>
-				<title>招聘之家</title>
+				<title>校园招聘</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<!--meta info-->
@@ -41,7 +41,7 @@
 						src="${pageContext.request.contextPath}/common/images/success.jpg" />
 				</div>
 				<h5>
-		<p class="m_bottom_10">	${user.username}， <span class="scheme_color"></span> 欢迎加入招聘之家</p>
+		<p class="m_bottom_10">	${user.username}， <span class="scheme_color"></span> 欢迎加入校园招聘</p>
 				</h5>
 				<h6>
 				</h6>
@@ -52,10 +52,10 @@
 					</li>
 					<li>
 						进入"
-					        	<a href="<%=path%>/user/goUserInfo">我的信息</a>”查看并管理您的个人信息
+					        	<a href="<%=path%>/user/goUserInfo">我的信息</a>”完善您的个人信息
 					</li>
 					<li>
-					        	<a href="<%=path%>/goMain">浏览信息</a>
+					        	<a href="<%=path%>/goMain">回到主页</a>
 					</li>
 				</ul>
 			</div>

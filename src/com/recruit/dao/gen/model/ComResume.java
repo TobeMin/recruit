@@ -16,8 +16,18 @@ public class ComResume implements Serializable {
     private String status;
 
     private Integer look;
+    
+    private String realName;
 
-    private static final long serialVersionUID = 1L;
+    public String getRealName() {
+		return realName;
+	}
+
+	public void setRealName(String realName) {
+		this.realName = realName;
+	}
+
+	private static final long serialVersionUID = 1L;
 
     public Integer getResumeId() {
         return resumeId;

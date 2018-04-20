@@ -6,7 +6,7 @@
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
 
 	<head>
-		<title>招聘之家</title>
+		<title>校园招聘</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<!--meta info-->
@@ -18,32 +18,19 @@
 <script src="<%=path%>/js/formValidatorRegex.js" type="text/javascript" charset="UTF-8"></script>
 		<script type="text/javascript">
 		$(document).ready(function(){
-// 	$.formValidator.initConfig({theme:"Default",submitOnce:true,formID:"form1",ajaxForm:{
-// 			dataType : "html",
-// 			buttons:$("#button"),
-// 			url: "http://www.51gh.net/chkuser.aspx?act=ok"
-// 		},
-// 		onError:function(msg,obj,errorlist){
-// 			$("#errorlist").empty();
-// 			$.map(errorlist,function(msg){
-// 				$("#errorlist").append("<li>" + msg + "</li>")
-// 			});
-// 			alert(msg);
-// 		},
-// 		submitAfterAjaxPrompt : '有数据正在异步验证，请稍等...'
-// 	});
+
 $.formValidator.initConfig({formID:"userform",debug:false,submitOnce:true,
-		onError:function(msg,obj,errorlist){
+		/* onError:function(msg,obj,errorlist){
 			$("#errorlist").empty();
 			$.map(errorlist,function(msg){
 				$("#errorlist").append("<li>" + msg + "</li>")
 			});
 			alert(msg);
-		},
+		}, */
 		submitAfterAjaxPrompt : '有数据正在异步验证，请稍等...'
 	});
 
-	$("#username").formValidator({onShow:"请输入用户名,",onFocus:"用户名至少5个字符,最多10个字符",onCorrect:"该用户名可以注册"}).inputValidator({min:5,max:10,onError:"你输入的用户名非法,请确认"})//.regexValidator({regExp:"username",dataType:"enum",onError:"用户名格式不正确"})
+	$("#username").formValidator({onShow:"请输入用户名",onFocus:"用户名至少5个字符,最多10个字符",onCorrect:"该用户名可以注册"}).inputValidator({min:5,max:10,onError:"你输入的用户名非法,请确认"})//.regexValidator({regExp:"username",dataType:"enum",onError:"用户名格式不正确"})
 	    .ajaxValidator({
 		dataType : "text",
 		async : true,
@@ -57,8 +44,8 @@ $.formValidator.initConfig({formID:"userform",debug:false,submitOnce:true,
 		onError : "该用户名不可用，请更换用户名",
 		onWait : "正在对用户名进行合法性校验，请稍候..."
 	}).defaultPassed();;
-	$("#password1").formValidator({onShow:"请输入密码",onFocus:"至少1个长度",onCorrect:"密码合法"}).inputValidator({min:1,empty:{leftEmpty:false,rightEmpty:false,emptyError:"密码两边不能有空符号"},onError:"密码不能为空,请确认"});
-	$("#password2").formValidator({onShow:"请再次输入密码",onFocus:"至少1个长度",onCorrect:"密码一致"}).inputValidator({min:1,empty:{leftEmpty:false,rightEmpty:false,emptyError:"重复密码两边不能有空符号"},onError:"重复密码不能为空,请确认"}).compareValidator({desID:"password1",operateor:"=",onError:"2次密码不一致,请确认"});
+	$("#password1").formValidator({onShow:"请输入密码",onFocus:"至少6个长度",onCorrect:"密码合法"}).inputValidator({min:6,empty:{leftEmpty:false,rightEmpty:false,emptyError:"密码两边不能有空符号"},onError:"密码不能为空,请确认",onErrorMin:"密码长度不能小于6"});
+	$("#password2").formValidator({onShow:"请再次输入密码",onFocus:"至少6个长度",onCorrect:"密码一致"}).inputValidator({min:6,empty:{leftEmpty:false,rightEmpty:false,emptyError:"重复密码两边不能有空符号"},onError:"重复密码不能为空,请确认",onErrorMin:"密码长度不能小于6"}).compareValidator({desID:"password1",operateor:"=",onError:"2次密码不一致,请确认"});
 });
 	function save(){
 		var determineResult = $("#determineResult").val();

@@ -5,7 +5,7 @@
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
 
 	<head>
-		<title>招聘之家</title>
+		<title>校园招聘</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<!--meta info-->
@@ -20,7 +20,7 @@
 										<li class="m_bottom_10">
 											<div class="clearfix m_bottom_15">
 												<i class="fa fa-map-marker f_left color_dark"></i>
-												<p class="contact_e">山东省青岛市福州南路236号,<br> 青岛大学.</p>
+												<p class="contact_e">广西柳州市城中区东环大道268号,<br> 广西科技大学.</p>
 											</div>
 										</li>
 										<li class="m_bottom_10">
@@ -32,7 +32,7 @@
 										<li class="m_bottom_10">
 											<div class="clearfix m_bottom_10">
 												<i class="fa fa-envelope f_left color_dark"></i>
-												<a class="contact_e default_t_color" href="mailto:#">info@qddx.edu.com</a>
+												<a class="contact_e default_t_color" href="mailto:#">info@gxut.edu.com</a>
 											</div>
 										</li>
 										<li>

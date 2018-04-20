@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.recruit.dao.gen.mapper.CompanyMapper;
+import com.recruit.dao.gen.model.ComResume;
 import com.recruit.dao.gen.model.Company;
 import com.recruit.dao.gen.model.CompanyCriteria;
 import com.recruit.service.CompanyService;
@@ -66,6 +67,8 @@ public class CompanyServiceImpl  implements CompanyService{
 		}
 		return false;
 	}
+
+
     
 
 }

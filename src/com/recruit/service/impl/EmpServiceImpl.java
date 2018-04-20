@@ -46,5 +46,19 @@ public class EmpServiceImpl implements EmpService {
 	return null;
 
 	}
+	
+	//?
+	@Override
+	public Emp findByUserId(Integer userId) {
+		// TODO Auto-generated method stub
+		
+		return empMapper.selectByUserId(userId);
+	}
+
+	@Override
+	public Emp findByEmpId(Integer empId) {
+		// TODO Auto-generated method stub
+		return empMapper.selectByPrimaryKey(empId);
+	}
 
 }

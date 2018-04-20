@@ -6,7 +6,7 @@
 <!--[if (gt IE 9)|!(IE)]><!--><html lang="en"><!--<![endif]-->
 
 	<head>
-		<title>招聘之家</title>
+		<title>校园招聘</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<!--meta info-->
@@ -89,20 +89,23 @@ $(document).ready(function() {
 			swal("姓名不可以为空!");
 			return;
 		}
-			var src=$('#detail_image').attr('src');
-			var srcDefault="/recruit/common/images/photoDefault.jpg";
-  			if(srcDefault==src){
-                if(confirm("您没有选择头像,请选择头像!")){
+		var name=$("#detail_resumeName").val();
+		if((name==null||name=="")){
+			swal("应聘岗位不可以为空!");
+			return;
+		}
+		var src=$('#detail_image').attr('src');
+		var srcDefault="/recruit/common/images/photoDefault.jpg";
+  		if(srcDefault==src){
+             if(confirm("您没有选择头像,请选择头像!")){
                 	//doSave();
- 			   }else{
- 				   return;
- 			   }
-  			}else{ 				
-  				doSave();
-  			}
+ 			}else{
+ 		   		return;
+ 			}
+  		}else{ 				
+  			doSave();
+  		}
 
-
-		
 	}
 	function doSave(){
 		$.ajax({
@@ -217,14 +220,15 @@ $(document).ready(function() {
     	          success:function(data, textStatus, jqXHR){
     	          		if(data == 1){
     	          			swal("保存成功!");
-    	          			window.location.href="<%=path%>/emp/goSuccess?flag=1"
+    	          			<%-- window.location.href="<%=path%>/emp/goSuccess?flag=1"; --%>
+    	          			 window.location.href="<%=path%>/emp/goEmpInfo";
     	          		}else{
-    	          			swal("异常......");
-    	          			window.location.href="<%=path%>/emp/goSuccess?flag=0"
+    	          			swal("数据异常，请稍后再试");
+    	          			<%-- window.location.href="<%=path%>/emp/goSuccess?flag=0"; --%>
     	          		}
     	          },
     	          error:function(){
-    	           	 	swal("异常信息!");
+    	           	 	swal("图片保存失败!");
     	          }
     	   });	
     	}
@@ -258,7 +262,7 @@ $(document).ready(function() {
 									<ul id="errorlist"></ul>
 										<div class="subject">
 		
-		<div id="" class="" style="">
+		<div id="" class="form_content" width="100%" height="1000px" style="">
 			    <form id="dpform">
         <table width="100%" cellpadding="0" cellspacing="0" style=" margin-top: 10px;">
             <tr>
@@ -279,8 +283,9 @@ $(document).ready(function() {
             </tr>
             <tr>
                 <td><font class="c1">国籍：</font></td>
-                <td><font class="c2"><select name="country" style="width:95%;height:35px;border: none; " id="detail_country"><option selected="selected"></option><option value="中国">中国</option><option value="伊朗">伊朗</option><option value="沙特">沙特</option><option value="阿联酋">阿联酋</option></select></font></td>
-                 <td><font class="c1">是否在职：</font></td>
+<!--                 <td><font class="c2"><select name="country" style="width:95%;height:35px;border: none; " id="detail_country"><option selected="selected"></option><option value="中国">中国</option><option value="伊朗">伊朗</option><option value="沙特">沙特</option><option value="阿联酋">阿联酋</option></select></font></td>
+ -->            <td><font class="c2"><input type="text" style="width:95%;height:35px;border: none; " id="detail_country"></font></td>
+ 				<td><font class="c1">是否在职：</font></td>
                 <td><font class="c2"><select name="jobstatus" style="width:95%;height:35px;border: none; " id="detail_jobstatus"><option selected="selected"></option><option value="否">否</option><option value="是">是</option></font></td>
             </tr>
             <tr>
@@ -301,7 +306,7 @@ $(document).ready(function() {
                 <td><font class="c2"><input type="text" style="width:95%;height:35px;border: none; " name="language" id="detail_language"></font></td>
             </tr>
             <tr>
-                <td><font class="c1">简历名称：</font></td>
+                <td><font class="c1">应聘岗位：</font></td>
                 <td><font class="c2"><input type="text" style="width:95%;height:35px;border: none; " name="resumeName" id="detail_resumeName"></font></td>
                  <td><font class="c1">QQ号码：</font></td>
                 <td id="check3"><font class="c2"><input type="text" style="width:95%;height:35px;border: none; " name="qq" id="detail_qq"  onblur="checkData(this.value)"></font></td>
@@ -345,7 +350,7 @@ $(document).ready(function() {
             </tr>
             <tr>
                 <td><font class="c1">工作经历：</font></td>
-                <td ><font class="c2"><input type="text" style="padding-left:2%; width:95%;height:38px;border: none; " name="work" id="detail_work"></font></td>
+                <td ><font class="c2"><textarea style="padding-left:2%; width:95%;height:50px;border: none; " rows="300" cols="50" name="work" id="detail_work"></textarea></font></td>
             </tr>
             <tr>
                 <td><font class="c1">家庭成员：</font></td>
@@ -353,13 +358,14 @@ $(document).ready(function() {
             </tr>
             <tr>
                 <td><font class="c1">项目经验：</font></td>
-                <td><font class="c2"><input type="text" style="padding-left:2%; width:95%;height:38px;border: none; "  name="experience" id="detail_experience"></font></td>
-            </tr>
+                <td><font class="c2"><textarea style="padding-left:2%; width:95%;height:100px;border: none; " rows="300" cols="50" name="experience" id="detail_experience"></textarea></font></td>
+<!--                 <td><font class="c2"><textarea style="padding-left:2%; width:95%;height:100px;border: none; "  name="experience" id="detail_experience"></font></td>
+ -->            </tr>
         </table>
 	</form>
-			<div class="details-footer">
-				<input value="保存" type="button" style="width: 60px;margin-right: 20px; height: 30px; line-height: 30px; background: #fff; border: 1px #999 solid;;" onclick="saveEmp();">
-				<input value="返回" type="button" style="width: 60px; height: 30px; line-height: 30px; background: #fff; border: 1px #999 solid;;" onclick="javascript:window.history.go(-1);">
+			<div class="details-footer" style="background-color: white">
+				<input value="保存" type="button" style="width: 60px;margin-right: 20px; height: 30px; line-height: 10px; background: #fff; border: 1px #999 solid;;" onclick="saveEmp();">
+				<input value="返回" type="button" style="width: 60px; height: 30px; line-height: 10px; background: #fff; border: 1px #999 solid;;" onclick="javascript:window.history.go(-1);">
 			</div>
 		</div>
 						</div>

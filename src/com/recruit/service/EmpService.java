@@ -12,5 +12,10 @@ public interface EmpService {
 	public boolean updateEmp(Emp dp);
 	
 	public Emp findById(Integer id);
+	
+	//?
+	public Emp findByUserId(Integer userId);
+	
+	public Emp findByEmpId(Integer empId);
 
 }
