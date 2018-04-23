@@ -210,6 +210,7 @@
 											<li><a class="color_dark tr_delay_hover" href="<%=request.getContextPath()%>/info/goAddInfo">发布求职信息</a></li>
 											<li><a class="color_dark tr_delay_hover" href="<%=request.getContextPath()%>/info/goMyInfo">我的求职信息</a></li>
 											<li><a class="color_dark tr_delay_hover" href="<%=request.getContextPath()%>/emp/goEmpInfo">我的信息</a></li>
+											<li><a class="color_dark tr_delay_hover" href="<%=request.getContextPath()%>/user/goVerified">实名认证</a></li>
 											<li><a class="color_dark tr_delay_hover" href="<%=request.getContextPath()%>/emp/goHistoryJobList">浏览职位历史</a></li>
 											<!-- <li><a class="color_dark tr_delay_hover" href="javascript: void(0);"  onclick="showNo();">我的收藏</a></li> -->
 										</ul>

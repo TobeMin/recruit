@@ -14,8 +14,18 @@ public class User implements Serializable {
     private String answer;
 
     private Integer status;
+    
+    private Integer verified;
 
-    private static final long serialVersionUID = 1L;
+    public Integer getVerified() {
+		return verified;
+	}
+
+	public void setVerified(Integer verified) {
+		this.verified = verified;
+	}
+
+	private static final long serialVersionUID = 1L;
 
     public Integer getId() {
         return id;

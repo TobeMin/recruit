@@ -18,10 +18,10 @@ import com.recruit.dao.gen.model.User;
  *  
  * @Title:UserUtil 
  * @Description: 用户工具类
- * @Copyright:Copyright (c) 2015
- * @Company:zy
- * @Date:2015-8-25
- * @author hs 
+ * @Copyright:Copyright (c) 
+ * @Company:
+ * @Date:
+ * @author 
  * @version 1.0
  */
 public class UserUtil {

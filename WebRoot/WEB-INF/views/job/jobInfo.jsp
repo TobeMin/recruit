@@ -20,6 +20,10 @@
 
 
 function save(){
+	var userVerified = ${user.verified};
+	//console.log(userVerified);
+	if(userVerified==1){
+	
 		$.ajax({
 	          url:"<%=path%>/job/applyJob",
 	          type:"post",
@@ -40,6 +44,10 @@ function save(){
 	           	 	swal("异常信息!");
 	          }
 	   });	
+		
+	}else{
+		swal("请先进行实名认证");
+	}
 	}
 		</script>
 	</head>

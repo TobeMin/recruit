@@ -60,6 +60,8 @@ public class EmpController {
 				response.setContentType("text/html;charset=utf-8");
 			
 				response.getWriter().print(emp.getEmpId());
+				
+				request.getSession().setAttribute("emp", empService.findByUserId(user.getId()));
 			
 			} else {
 				response.setContentType("text/html;charset=utf-8");
@@ -85,6 +87,8 @@ public class EmpController {
 				response.setContentType("text/html;charset=utf-8");
 			
 				response.getWriter().print(emp.getEmpId());
+				
+				request.getSession().setAttribute("emp", empService.findByUserId(user.getId()));
 			
 			} else {
 				response.setContentType("text/html;charset=utf-8");

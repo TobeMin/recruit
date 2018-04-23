@@ -164,12 +164,18 @@ $.ajax({
 	   });	
 		
 	}
+	
+	
 </script>
 <style type="text/css">
 #detail_image {filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);}
+
+/* #isVerified{
+	color:red;
+	display:inline;
+} */
 </style>
 <script type="text/javascript">
-
 
                 //图片上传预览    IE是用了滤镜。
         function previewImage(file)
@@ -264,6 +270,19 @@ $.ajax({
     	          }
     	   });	
     	}
+        
+    	function isEmail(obj){
+    		if(obj==""){
+    			swal("邮箱不能为空");
+    		}else{
+    			if(!/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/.test(obj)){
+    				var back =document.getElementById("check1");
+    		    	back.setAttribute("class","bk1");
+    				swal("非法邮箱！");
+    			}
+    		}
+    	}
+    	
 </script>     
 	</head>
 	<body>
@@ -289,12 +308,18 @@ $.ajax({
 		<!--content-->
 			<div class="page_content_offset">
 				<div class="container">
-							<h2 class="tt_uppercase color_dark m_bottom_25">个人信息维护</h2>
-									<p class="m_bottom_10"> <span class="scheme_color"></span> </p>
-									<ul id="errorlist"></ul>
-										<div class="subject">
+					<h2 class="tt_uppercase color_dark m_bottom_25">个人信息维护
+					<c:if test="${user.verified==0 }">
+					<b style="color:red">未实名认证</b>
+					</c:if>
+					<c:if test="${user.verified==1 }">
+					<b style="color:green">已实名认证</b>
+					</c:if>
+					</h2>
+						<p class="m_bottom_10"> <span class="scheme_color"></span> </p>
+						<ul id="errorlist"></ul>
+						<div class="subject">
 		
-		<div id="" class="" style="">
 			    <form id="dpform">
         <table width="100%" cellpadding="0" cellspacing="0" style=" margin-top: 10px;">
         <input type="hidden" style="width:95%;height:35px;border: none; " name="empId" id="detail_empId">
@@ -312,13 +337,13 @@ $.ajax({
                 <td><font class="c1">学历：</font></td>
                 <td><font class="c2"><input type="text" style="width:95%;height:35px;border: none; " name="degree" id="detail_degree"></font></td>
                 <td><font class="c1">是否结婚：</font></td>
-                <td><font class="c2"><select name="marry" style="width:95%;height:35px;border: none; " id="detail_marry"><option selected="selected" value="否">否</option><option value="是">是</option></font></td>
+                <td><font class="c2"><select name="marry" style="width:95%;height:35px;border: none; " id="detail_marry"><option selected="selected" value="否">否</option><option value="是">是</option></select></font></td>
             </tr>
             <tr>
                 <td><font class="c1">国籍：</font></td>
                 <td><font class="c2"><input type="text" name="country" style="width:95%;height:35px;border: none; " id="detail_country"></font></td>
                  <td><font class="c1">是否在职：</font></td>
-                <td><font class="c2"><select name="jobstatus" style="width:95%;height:35px;border: none; " id="detail_jobstatus"><option selected="selected"></option><option value="否">否</option><option value="是">是</option></font></td>
+                <td><font class="c2"><select name="jobstatus" style="width:95%;height:35px;border: none; " id="detail_jobstatus"><option selected="selected"></option><option value="否">否</option><option value="是">是</option></select></font></td>
             </tr>
             <tr>
                 <td><font class="c1">出生日期：</font></td>
@@ -346,7 +371,7 @@ $.ajax({
             </tr>
             <tr>
                 <td><font class="c1">邮箱地址：</font></td>
-                <td id="check1"><font class="c2"><input type="text" style="width:95%;height:35px;border: none; " name="email" id="detail_email" ></font></td>
+                <td id="check1"><font class="c2"><input type="text" style="width:95%;height:35px;border: none; " name="email" id="detail_email" onblur="isEmail(this.value)"></font></td>
                 <td><font class="c1 ">电话号码：</font></td>
                 <td id="check2" colspan="2" ><font class="c2"><input type="text"style="width:95%;height:35px;border: none;" name="tel" id="detail_tel"  onblur="isMobile(this.value)"></font></td>
             </tr>
@@ -399,11 +424,10 @@ $.ajax({
         </table>
 	</form>
 			<div class="details-footer">
-				<input value="保存" type="button" style="width: 60px;margin-right: 20px; height: 30px; line-height: 30px; background: #fff; border: 1px #999 solid;;" onclick="saveEmp();">
-				<input value="返回" type="button" style="width: 60px; height: 30px; line-height: 30px; background: #fff; border: 1px #999 solid;;" onclick="javascript:window.history.go(-1);">
+				<input value="保存" type="button" style="width: 60px;margin-right: 20px; height: 30px; line-height: 10px; background: #fff; border: 1px #999 solid;;" onclick="saveEmp();">
+				<input value="返回" type="button" style="width: 60px; height: 30px; line-height: 10px; background: #fff; border: 1px #999 solid;;" onclick="javascript:window.history.go(-1);">
 			</div>
-		</div>
-						</div>
-</div>
+			
+	
 	</body>
 </html>

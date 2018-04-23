@@ -225,4 +225,24 @@ public class UserController {
                    
 		return cService.findByInfoId(pager, id);
 	}
+	
+	@RequestMapping(value = "/goVerified")
+	public ModelAndView  goVerified(HttpSession session) {
+		
+		ModelAndView view = new ModelAndView();
+		User user = (User) session.getAttribute("user");
+		session.setAttribute("emp", empService.findByUserId(user.getId()));
+		view.setViewName("user/verified");
+		return view;
+	}
+	
+	@RequestMapping(value="/updateVerified")
+	@ResponseBody
+	public boolean updateVerified(HttpSession session) {
+		
+		User user = (User) session.getAttribute("user");
+		user.setVerified(1);
+		
+		return userService.updateUser(user);
+	}
 }

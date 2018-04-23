@@ -16,7 +16,25 @@
     	
     }
 }
-   
+
+ 
+ /*function isEmail(obj){
+	 if(obj==""){
+			var back =document.getElementById("check1");
+	    	back.removeAttribute("class");
+			 renturn;
+		 }
+	     if(/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/.test(obj))
+	     {
+	    	var back =document.getElementById("check1");
+	    	back.removeAttribute("class");
+	    }else{
+	    	var back =document.getElementById("check1");
+	    	back.setAttribute("class","bk1");
+	    	swal("请输入邮箱的正确格式");
+	    }
+}*/
+ 
 function checkIdCard(obj){
 	 if(obj==""){
 		 var back =document.getElementById("check1");
@@ -204,6 +222,7 @@ function checkIdCard4(obj){
     	
     }
 }
+ 
 
 
 

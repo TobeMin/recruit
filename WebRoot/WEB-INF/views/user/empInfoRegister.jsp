@@ -81,6 +81,7 @@ table.display td {
 <script type="text/javascript" charset="utf-8">
 
 $(document).ready(function() {
+	
 });
 
 	function saveEmp(){
@@ -232,6 +233,18 @@ $(document).ready(function() {
     	          }
     	   });	
     	}
+    	
+    	function isEmail(obj){
+    		if(obj==""){
+    			swal("邮箱不能为空");
+    		}else{
+    			if(!/^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/.test(obj)){
+    				var back =document.getElementById("check1");
+    		    	back.setAttribute("class","bk1");
+    				swal("非法邮箱！");
+    			}
+    		}
+    	}
 </script>     
 	</head>
 	<body>
@@ -257,7 +270,7 @@ $(document).ready(function() {
 		<!--content-->
 			<div class="page_content_offset">
 				<div class="container">
-							<h2 class="tt_uppercase color_dark m_bottom_25">	${user.username }账号密码设置成功，请填写详细信息完成注册</h2>
+							<h2 class="tt_uppercase color_dark m_bottom_25">	${user.username }账号注册成功，请完善个人信息</h2>
 									<p class="m_bottom_10"> <span class="scheme_color"></span> </p>
 									<ul id="errorlist"></ul>
 										<div class="subject">
@@ -314,7 +327,7 @@ $(document).ready(function() {
             </tr>
             <tr>
                 <td><font class="c1">邮箱地址：</font></td>
-                <td id="check1"><font class="c2"><input type="text" style="width:95%;height:35px;border: none; " name="email" id="detail_email" ></font></td>
+                <td id="check1"><font class="c2"><input type="text" style="width:95%;height:35px;border: none; " name="email" id="detail_email" onblur="isEmail(this.value)"></font></td>
                 <td><font class="c1 ">电话号码：</font></td>
                 <td id="check2" colspan="2" ><font class="c2"><input type="text"style="width:95%;height:35px;border: none;" name="tel" id="detail_tel"  onblur="isMobile(this.value)"></font></td>
             </tr>
