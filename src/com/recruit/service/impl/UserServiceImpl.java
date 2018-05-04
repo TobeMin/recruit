@@ -103,7 +103,7 @@ public class UserServiceImpl  implements UserService{
 		JqueryDto dto=new JqueryDto();
 		dto.setTotal(total);
 		pager.setObj(list);
-//		String json = net.sf.json.JSONArray.fromObject(pager.getObj()).toString();
+
 		dto.setRows(list);
 			//查询分页条数
 			return dto;

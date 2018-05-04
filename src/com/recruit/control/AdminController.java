@@ -148,10 +148,8 @@ public class AdminController {
 	@ResponseBody
 	@RequestMapping(value="findEmpList")
 	public JqueryDto findEmpList(HttpServletRequest request,HttpServletResponse response,String param){
-
-//	Company  c=companyService.findByUid(user.getId());
 	
-	//查询分数LIST	
+	//查询分页LIST	
 	Pager	pager = PagerUtils.getPager(request);
 	
 		return userService.findAllEmps(pager,param);
