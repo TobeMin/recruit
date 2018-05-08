@@ -29,7 +29,6 @@ $(function() {
     $obj.datagrid({  
         loadMsg : '数据加载中请稍后……',  
         url : '<%=path%>/admin/findEmpList',  
-        //url : root + 'js/app/sysManagement/sysConfig.json',  
         fitColumns : true,  
         autoRowHeight : true,  
         pagination : true,  
@@ -40,14 +39,14 @@ $(function() {
         border : false,  
         singleSelect:true,  
         idField:'jobId',
-        				iconCls: 'icon-edit',
-				pagination:true,
-			collapsible:true,
-			rownumbers:true,
-			remoteSort : false,
-                striped: true, //行背景交换
-                nowap: true, //列内容多时自动折至第二行
-                border: false,  
+        iconCls: 'icon-edit',
+		pagination:true,
+		collapsible:true,
+		rownumbers:true,
+		remoteSort : false,
+        striped: true, //行背景交换
+        nowap: true, //列内容多时自动折至第二行
+        border: false,  
         columns : [ [ {  
                 field : 'id',  
                 title : 'id',  
@@ -268,7 +267,7 @@ $(function() {
         //$obj.datagrid("selectRow", editIndex);  
         $obj.datagrid("beginEdit", editIndex);  
     }  
-            function dosearch(){
+    function dosearch(){
         var p=$('#param').val();
       				$('#tt').datagrid('reload', {
 					param : p

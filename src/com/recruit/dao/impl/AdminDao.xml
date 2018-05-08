@@ -61,7 +61,7 @@ company AS c
 RIGHT OUTER JOIN `user` AS u ON c.user_id = u.id
 where u.status=2
 				<if test="param != null and param != ''">
-		and( c.fullname like #{param} or c.username like #{param})
+		and( c.fullname like #{param} or u.username like #{param})
 		</if>
 		limit #{start},#{end}
 	</select>
@@ -74,7 +74,7 @@ company AS c
 RIGHT OUTER JOIN `user` AS u ON c.user_id = u.id
 where u.status=2
 				<if test="param != null and param != ''">
-		and( c.fullname like #{param} or c.username like #{param})
+		and( c.fullname like #{param} or u.username like #{param})
 		</if>
 	</select>
 	

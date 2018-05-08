@@ -138,15 +138,18 @@ public class InfoController {
 	
 	@ResponseBody
 	@RequestMapping(value="findInfoList", method = RequestMethod.POST)
-	public JqueryDto findInfoList(HttpServletRequest request,HttpServletResponse response,int status,int isApply){
-	//查询总数
-//		User user = (User) request.getSession().getAttribute("user");
-//		if (user == null) {
-//            return null;
-//		}
-//	Company  c=companyService.findByUid(user.getId());
-	//查询分数LIST	
-    	Pager	pager = PagerUtils.getPager(request);
+	public JqueryDto findInfoList(HttpServletRequest request,HttpServletResponse response,String param){
+    	
+		Pager	pager = PagerUtils.getPager(request);
+    	
+    	Integer status =0;
+    	Integer isApply = 1;
+    	if(param!=null) {
+    		System.out.println("===="+param);
+    		status = Integer.parseInt(param);
+    	}
+	
+    	System.out.println("=====findInfoList status"+status+param);
 		return infoService.findInfoList(pager, 0,status,isApply);
 	}
 	

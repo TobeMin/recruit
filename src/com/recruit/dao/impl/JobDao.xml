@@ -94,7 +94,7 @@
 		INNER JOIN company AS c ON j.com_id = c.com_id 
 		where 1=1
 		<if test="jobName != null and jobName != ''">
-			AND ( j.job_name LIKE #{jobName}or j.address like #{jobName}  or c.fullname like #{jobName} or j.job_status LIKE #{jobName} or j.description like #{jobName}) 
+			AND ( j.job_name LIKE concat('%',#{jobName},'%') or j.address like concat('%',#{jobName},'%')  or c.fullname like concat('%',#{jobName},'%') or j.job_status LIKE concat('%',#{jobName},'%') or j.description like concat('%',#{jobName},'%')) 
 		</if>
 		limit #{start},#{end}
 	</select>

@@ -90,8 +90,13 @@ public class JobServiceImpl implements JobService {
 	public JqueryDto findJobList(Pager pager, Job job) {
 		//查询总数
 		int total=jobDao.findJobListcount(job.getJobName());
-		int start =Integer.parseInt(pager.getPage())-1;
-		List<JobDto> list=jobDao.findJobList(job.getJobName(), start, Integer.parseInt(pager.getRows()));
+		int paperRows = Integer.parseInt(pager.getRows());
+		int start = (Integer.parseInt(pager.getPage())-1) * paperRows;
+		//String jobName = "%"+job.getJobName()+"%";
+		List<JobDto> list=jobDao.findJobList(job.getJobName(), start, paperRows);
+//		for(JobDto j:list) {
+//			System.out.println("=======findJobList(Pager pager, Job job)========"+j.getJobName());
+//		}
 		JqueryDto dto=new JqueryDto();
 		dto.setTotal(total);
 		pager.setObj(list);

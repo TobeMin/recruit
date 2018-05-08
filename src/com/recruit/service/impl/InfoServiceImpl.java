@@ -65,8 +65,9 @@ public class InfoServiceImpl implements InfoService {
 	public JqueryDto findInfoList(Pager pager, int userId,int status,int isApply) {
 		//查询总数
 	int total=infoDao.findInfocount(userId,status,isApply);
-	int start =Integer.parseInt(pager.getPage())-1;
-	List<InfoDto> list=infoDao.findInfoList(userId, status,isApply,start, Integer.parseInt(pager.getRows()));
+	int rows= Integer.parseInt(pager.getRows());
+	int start =(Integer.parseInt(pager.getPage())-1) * rows;
+	List<InfoDto> list=infoDao.findInfoList(userId, status,isApply,start,rows);
 	JqueryDto dto=new JqueryDto();
 	dto.setTotal(total);
 	pager.setObj(list);

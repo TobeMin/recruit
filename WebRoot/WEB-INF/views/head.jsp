@@ -197,7 +197,7 @@
 																	<div class="sub_menu_wrap top_arrow d_xs_none type_2 tr_all_hover clearfix r_corners">
 										<ul class="sub_menu">
 											<li><a class="color_dark tr_delay_hover" href="<%=request.getContextPath()%>/user/goJobList">企业职位列表</a></li>
-											<li><a class="color_dark tr_delay_hover" href="<%=request.getContextPath()%>/user/goInfoList">求职列表</a></li>
+											<li><a class="color_dark tr_delay_hover" href="<%=request.getContextPath()%>/user/goInfoList">求职招聘信息</a></li>
 						
 										</ul>
 									</div>

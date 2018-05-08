@@ -98,8 +98,9 @@ public class UserServiceImpl  implements UserService{
 		param=	"%"+param+"%";
 		}
 		int total=adminDao.findAllEmpscount(param);
-		int start =Integer.parseInt(pager.getPage())-1;
-		List<EmpDto> list=adminDao.findAllEmpsList( param ,start,Integer.parseInt(pager.getRows()));
+		int paperRows = Integer.parseInt(pager.getRows());
+		int start = (Integer.parseInt(pager.getPage())-1) * paperRows;
+		List<EmpDto> list=adminDao.findAllEmpsList( param ,start,paperRows);
 		JqueryDto dto=new JqueryDto();
 		dto.setTotal(total);
 		pager.setObj(list);

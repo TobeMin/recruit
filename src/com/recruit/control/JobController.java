@@ -249,10 +249,10 @@ public class JobController {
      
 	@ResponseBody
 	@RequestMapping(value="findJobList")
-	public JqueryDto findJobList(HttpServletRequest request,HttpServletResponse response,String jobName){
+	public JqueryDto findJobList(HttpServletRequest request,HttpServletResponse response,String param){
 
 	Job job=new Job();
-	job.setJobName(jobName);
+	job.setJobName(param);
 	//查询分页LIST	
 	Pager pager = PagerUtils.getPager(request);
 		return jobService.findJobList(pager, job);

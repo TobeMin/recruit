@@ -23,19 +23,20 @@
 		<script type="text/javascript">
 var $obj;  
 $(function() {  
-// find();
+
 $obj = $("#tt");  
     $obj.datagrid({  
         loadMsg : '数据加载中请稍后……',  
         url : '<%=path%>/info/findInfoList',  
-        //url : root + 'js/app/sysManagement/sysConfig.json',  
         fitColumns : true,  
         autoRowHeight : true,  
         pagination : true,  
         pagePosition : 'bottom',  
         pageSize : 10, 
         queryParams:{
-        "status":$('#status').val(),
+        "status":0,
+        //"status":$('#status').val(),
+        //"status":$("#status").find("option:selected").attr("value"),
         "isApply":1
         } ,
         toolbar: '#tb',  
@@ -43,14 +44,14 @@ $obj = $("#tt");
         border : false,  
         singleSelect:true,  
         idField:'infoId',
-        				iconCls: 'icon-edit',
-				pagination:true,
-			collapsible:true,
-			rownumbers:true,
-			remoteSort : false,
-                striped: true, //行背景交换
-                nowap: true, //列内容多时自动折至第二行
-                border: false,  
+        iconCls: 'icon-edit',
+		pagination:true,
+		collapsible:true,
+		rownumbers:true,
+		remoteSort : false,
+        striped: true, //行背景交换
+        nowap: true, //列内容多时自动折至第二行
+        border: false,  
         columns : [ [ {  
                 field : 'infoId',  
                 title : 'infoId',  
@@ -125,7 +126,7 @@ $obj = $("#tt");
     });  
   
 });  
-function find(){
+<%-- function find(){
     $obj = $("#tt");  
     $obj.datagrid({  
         loadMsg : '数据加载中请稍后……',  
@@ -327,10 +328,15 @@ function find(){
         }         
         //$obj.datagrid("selectRow", editIndex);  
         $obj.datagrid("beginEdit", editIndex);  
-    }  
-     function dosearch(){
-  window.location.reload();
-			}
+    }   --%>
+    
+    function dosearch(){
+    	var s=$("#status").find("option:selected").attr("value");
+    	console.log(s);
+      				$('#tt').datagrid('reload', {
+      					param:s
+				});
+      }
 		</script>
 	</head>
 	<body>
@@ -357,13 +363,13 @@ function find(){
 			<div class="page_content_offset">
 				<div class="container">
 <!-- 			   <table id="jobManagerGrid"></table> -->
-<form>
-	<span>信息类型：</span>											<select name="status" id="status">
+	<form>
+	<span>信息类型：</span><select name="status" id="status">
 	                              <option value="0" selected="selected">全部</option>
                                    <option value="1" >求职信息</option>
-                               <option value="2">招聘信息</option></select>
+                               		<option value="2">招聘信息</option></select>
 	<a href="#" class="easyui-linkbutton" iconCls="search"  onclick="dosearch();">查询</a>
-</form>
+	</form>
 	<table id="tt" ></table>
 						
 				</div>

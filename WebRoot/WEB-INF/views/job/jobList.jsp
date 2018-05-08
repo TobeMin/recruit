@@ -23,7 +23,7 @@
 		<script type="text/javascript">
 var $obj;  
 $(function() { 
-  var param=$('#param').val();
+  <%-- var param=$('#param').val();
   var joburl='<%=path%>/job/findJobList';
   if(param==""||(typeof(param) == undefined) ) {
 
@@ -31,11 +31,11 @@ $(function() {
   	joburl+="?jobName="+param;
   	alert(joburl);
   	console(joburl);
-  }
+  } --%>
     $obj = $("#tt");  
     $obj.datagrid({  
         loadMsg : '数据加载中请稍后……',  
-        url : joburl,  
+        url : '<%=path%>/job/findJobList',  
         //url : root + 'js/app/sysManagement/sysConfig.json',  
         fitColumns : true,  //设置为true将自动使列适应表格宽度以防止出现水平滚动。
         autoRowHeight : true,  //定义设置行的高度，根据该行的内容。设置为false可以提高负载性能。
@@ -270,6 +270,13 @@ $(function() {
         //$obj.datagrid("selectRow", editIndex);  
         $obj.datagrid("beginEdit", editIndex);  
     }  
+    
+    function dosearch(){
+        var p=$('#param').val();
+      				$('#tt').datagrid('reload', {
+					param : p
+				});
+      }
       
 		</script>
 	</head>
@@ -292,9 +299,12 @@ $(function() {
 			<div class="page_content_offset">
 				<div class="container">
 <!-- 			   <table id="jobManagerGrid"></table> -->
-
+					 <form>
+						<span>搜索：</span>		 <input id="param" type="text" >						
+						<a href="#" class="easyui-linkbutton" iconCls="search"  onclick="dosearch();">查询</a>
+					</form>
 					<table id="tt" ></table>
-					<input type="hidden" value="${param.param}" id="param" >	
+					<%-- <input type="hidden" value="${param.param}" id="param" > --%>	
 				</div>
 			</div>
 						<!--markup footer-->
